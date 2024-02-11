@@ -8,4 +8,6 @@ public interface PlayerService {
     Player getPlayerInfo(String name);
 
     List<Player> getLeaderboard();
+
+    void incrementClickCount(String name);
 }

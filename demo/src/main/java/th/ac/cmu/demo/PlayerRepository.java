@@ -1,21 +1,22 @@
 package th.ac.cmu.demo;
 
-
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 @Repository
-public class PlayerRepository implements PlayerService{
-    private Map<String, Player> map = new HashMap<>();
+public class PlayerRepository implements PlayerService {
+    private final Map<String, Player> map = new HashMap<>();
 
     @Override
     public Player createPlayer(String name) {
-        if(map.containsKey(name))
+        if (map.containsKey(name)) {
             return map.get(name);
-        Player player = new Player(name);
-        map.put(name, player);
-        return player;
+        } else {
+            Player player = new Player(name);
+            map.put(name, player);
+            return player;
+        }
     }
 
     @Override
@@ -26,7 +27,15 @@ public class PlayerRepository implements PlayerService{
     @Override
     public List<Player> getLeaderboard() {
         List<Player> players = new ArrayList<>(map.values());
-        players.sort(Comparator.comparingInt(Player::getScore).reversed());
+        players.sort(Comparator.comparingInt(Player::getClicked).reversed());
         return players;
+    }
+
+    @Override
+    public void incrementClickCount(String name) {
+        Player player = map.get(name);
+        if (player != null) {
+            player.incrementClicked();
+        }
     }
 }

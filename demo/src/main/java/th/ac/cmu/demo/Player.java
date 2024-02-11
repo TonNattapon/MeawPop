@@ -1,14 +1,21 @@
 package th.ac.cmu.demo;
+import lombok.Getter;
 
+@Getter
 public class Player {
-    public final String name;
-    public Integer clicked;
+    private final String name;
+    private Integer clicked;
+
     public Player(String name) {
         this.name = name;
         this.clicked = 0;
     }
 
-    public static int getScore(Object o) {
-        return 0;
+    public int getClicked() {
+        return this.clicked;
+    }
+
+    public void incrementClicked() {
+        this.clicked++;
     }
 }

@@ -17,24 +17,34 @@ public class DemoController {
     public String HelloWorld() {
         return "Hello CPE Tuesday!";
     }
-
     @PostMapping("/player")
-    public Player createNewPlayer(@RequestBody String body) {
-     return this.playerService.createPlayer(body);
+    public Player createNewPlayer(@RequestBody String body){
+        return this.playerService.createPlayer(body);
     }
 
-    //Implement
-//    @GetMapping("/player/{name}")
-//    public ResponseEntity<Player> getPlayerInfo(@PathVariable String name) {
-//        Player player = playerService.getPlayerInfo(name);
-//        if (player == null) {
-//            return new ResponseEntity<>("Player not found", HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(player, HttpStatus.OK);
-//    }
+
+    @GetMapping("/player/{name}")
+    public ResponseEntity<Object> getPlayerInfo(@PathVariable String name) {
+        Player player = playerService.getPlayerInfo(name);
+        if (player == null) {
+            return new ResponseEntity<>("Player not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(player, HttpStatus.OK);
+    }
+
+    @PutMapping("/player/{name}")
+    public ResponseEntity<String> incrementClicked(@PathVariable String name) {
+        Player player = playerService.getPlayerInfo(name);
+        if (player == null) {
+            return new ResponseEntity<>("Player not found", HttpStatus.NOT_FOUND);
+        }
+
+        playerService.incrementClickCount(name);
+        return new ResponseEntity<>("Click count for player " + name + " incremented", HttpStatus.OK);
+    }
 
     @GetMapping("/leaderboard")
-    public ResponseEntity<List<Player>> getLeaderboard(){
+    public ResponseEntity<List<Player>> getLeaderboard() {
         List<Player> leaderboard = playerService.getLeaderboard();
         return new ResponseEntity<>(leaderboard, HttpStatus.OK);
     }
