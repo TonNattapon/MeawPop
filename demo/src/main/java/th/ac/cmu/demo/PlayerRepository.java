@@ -3,8 +3,7 @@ package th.ac.cmu.demo;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class PlayerRepository implements PlayerService{

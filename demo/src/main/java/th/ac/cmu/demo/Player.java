@@ -7,4 +7,8 @@ public class Player {
         this.name = name;
         this.clicked = 0;
     }
+
+    public static int getScore(Object o) {
+        return 0;
+    }
 }

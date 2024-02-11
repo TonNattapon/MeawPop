@@ -24,14 +24,14 @@ public class DemoController {
     }
 
     //Implement
-    @GetMapping("/player/{name}")
-    public ResponseEntity<Player> getPlayerInfo(@PathVariable String name) {
-        Player player = playerService.getPlayerInfo(name);
-        if (player == null) {
-            return new ResponseEntity<>("Player not found", HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(player, HttpStatus.OK);
-    }
+//    @GetMapping("/player/{name}")
+//    public ResponseEntity<Player> getPlayerInfo(@PathVariable String name) {
+//        Player player = playerService.getPlayerInfo(name);
+//        if (player == null) {
+//            return new ResponseEntity<>("Player not found", HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(player, HttpStatus.OK);
+//    }
 
     @GetMapping("/leaderboard")
     public ResponseEntity<List<Player>> getLeaderboard(){
